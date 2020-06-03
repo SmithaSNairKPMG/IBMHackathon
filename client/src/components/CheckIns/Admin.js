@@ -38,16 +38,47 @@ class Admin extends Component {
   
       return(
         <div>
+          <div className="container" id="admin">
+          <div id="booking-form" className="booking-form">
                     <Occupancy/>
-<table>
-    <tr><td>EmpId</td><td>Name</td></tr>
-                    {
-                        tokens.map(x =>                        
-                                <tr><td>{x.empId}</td><td>{x.name}</td></tr>
-                        )
-                    }
-                    </table>
+                    </div>
         </div>
+        <div  className="admin">
+        <section>
+         
+  <h1>Token Summary</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Token Status</th>
+          <th>Token Issued/Queued Time</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+      {
+          tokens.map(x => 
+        <tr>
+          <td>{x.empId}</td>
+          <td>{x.name}</td>
+          <td>{x.tokenStatus}</td>
+          <td>{x.time}</td>
+        </tr>
+          )
+    }
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+       </div>
       )
     }
   }

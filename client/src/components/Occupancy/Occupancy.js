@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 class Occupancy extends Component {
-
-    state = {
-      totalSeats: 0
+  constructor(props){
+    super(props);
+      this.state = {
+        totalSeats: 0
+      }
     }
   
     componentDidMount(){
@@ -48,13 +50,12 @@ class Occupancy extends Component {
       }
 
     render() {
-      let { user } = this.state;
-  
+     
       return(
         <div>
-          <h1>Total Seats Available: </h1>
-          <input name="totalSeats" type="number" onChange={this.handleChange} value={this.state.totalSeats}/>
-        <button onClick={this.addorupdate}>Save</button>
+          <h4>Total Seats Available: </h4>
+          <input name="totalSeats" type="number" className="input" onChange={this.handleChange} value={this.state.totalSeats}/>
+        <button onClick={this.addorupdate} className="save">Save</button>
         </div>
       )
     }

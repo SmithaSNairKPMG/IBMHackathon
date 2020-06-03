@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import ValidationError from './ValidationError';
 
 class Registration extends Component {
 
-    state = {
-      user: {}
-    }
-  
-    componentDidMount(){
-    
+  constructor(props){
+    super(props);
+      this.state = {
+        user: {},
+      error:''
+      }
     }
   
   
@@ -28,17 +29,25 @@ class Registration extends Component {
             password: user.password
         }
     console.log(data)
-        if(data.name && data.email && data.empId && data.password && (this.state.password == this.state.confirmPassword )){
+    
+        if(data.name && data.email && data.empId && data.password){ console.log(this.state)
+          if(user.password != user.confirmPassword){
+            this.setState({error : 'Passwords do not match'});
+          }
+          else{
           axios.post('/api/users/register', data)
             .then(res => {
               if(res.data){
                 console.log('Registered successfully');
                 window.location = "/";
               }
-            })
+            }, (err => { 
+              this.setState({error : err.response.data.error});
+            }))
             .catch(err => console.log(err))
+          }
         }else {
-          console.log('input field requiredp')
+          this.setState({error : 'Input fields required'});
         }
       }
 
@@ -63,7 +72,8 @@ class Registration extends Component {
           <div class="animated bounceInDown" id="rightSquare">
             <div id="container">
             <h1 class="signup">Sign Up </h1>
-            <form className="animated slideInLeft">               
+            <form className="animated slideInLeft">    
+            <ValidationError error={this.state.error}></ValidationError>                 
             <input class="optin" name="name"  onChange={this.handleChange} type="text" placeholder="Name" />
            <input class="optin" name="email" type="text"  onChange={this.handleChange} placeholder="Email" />   
            <input class="optin" name="empId" type="text"  onChange={this.handleChange} placeholder="Employee ID" />   

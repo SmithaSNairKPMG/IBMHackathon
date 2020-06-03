@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Message from './Message'
+import Available from './Available'
 
 class Main extends Component {
 constructor(props){
@@ -82,8 +84,8 @@ constructor(props){
             }
             else{
               swal({
-                title: "Add to Queue?",
-                text: "Do you want to add to Queue?",
+                title: "Wait in Queue?",
+                text: "Your token will be accepted once the seat is available. Do you want to wait in Queue?",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -108,7 +110,7 @@ constructor(props){
                     this.setState({
                       tokenStatus: r.data.tokenStatus
                      });
-                     swal("Try Again", "Try Again Later", "warning");
+                     
                   } 
                  
                   );
@@ -128,19 +130,34 @@ constructor(props){
 
     render() {
       let { user } = this.state;
-      const  checkInStatus = this.state.checkInStatus == 1 ? 'Swipe Out' : 'Swipe In';
+      const  checkInStatus = this.state.checkInStatus == 1 ? 'Check Out' : 'Check In';
       const  tokenStatus = !this.state.tokenStatus || this.state.tokenStatus == 'Cancelled' || this.state.tokenStatus == 'CheckedIn' ? 'Request Token': 
       (this.state.tokenStatus == 'InQueue' ? 'Added to Queue' : this.state.tokenStatus);
       const checkInEnabled = (this.state.checkInStatus == 0 && this.state.tokenStatus == 'Accepted')
       ||  (this.state.checkInStatus == 1 && this.state.tokenStatus == 'CheckedIn');
       const tokenDisabled = (this.state.tokenStatus == 'InQueue' ||this.state.tokenStatus == 'Accepted' || this.state.tokenStatus == 'CheckedIn')
+      let message = '';
+      switch(this.state.tokenStatus){
+        case 'Cancelled': message = 'Request token to get access to Food court'
+                        break;
+        case 'Accepted': message = 'Token has been accepted. Check In before 15 minutes to avoid cancellation of issued token.'
+                        break;
+        case 'CheckedIn': message = 'Check Out while leaving'
+                        break;
+        case 'InQueue': message = 'Your request has been added to queue'
+                        break;
+      }
       return(
         <div className="container" id="emp">
         <div id="booking-form" className="booking-form">
+          <Available></Available>
+          <Message message={message}></Message>
         <div className="form-group">
         <div className="form-submit">
         <input type="submit" id="submit" className="submit" onClick={this.swipeIn} disabled={!checkInEnabled} value={checkInStatus} />
         </div>
+        </div>
+        <div className="form-group">
         <div className="form-submit">
         <input type="submit" id="submit" className="submit" onClick={this.requestToken} disabled={tokenDisabled} value={tokenStatus} />
         

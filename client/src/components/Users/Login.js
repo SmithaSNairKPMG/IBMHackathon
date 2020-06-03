@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import ValidationError from './ValidationError';
 
 class Login extends Component {
-
-    state = {
-      user: {}
+  constructor(props){
+    super(props);
+      this.state = {
+        user: {},
+      error:''
+      }
     }
-  
-    componentDidMount(){
-     // this.getTodos();
-    }
-  
-   
   
     handleChange = (e) => {
         const user = this.state.user;
@@ -21,17 +19,18 @@ class Login extends Component {
         })
       }
 
-      login = () => {
+    login = () => {
         const user = this.state.user;
         const data = {
             email: user.email, 
             password: user.password
         }
-   console.log(data)
+
         if(data.email  && data.password ){
           axios.post('/api/users/login', data)
             .then(res => {
-              if(res.data){ console.log(res)
+              if(res.data)
+              { console.log(res)
                 console.log('Signed In successfully');
              
               this.props.history.push({
@@ -39,13 +38,12 @@ class Login extends Component {
                 state:res.data
                });
               }
-              else{
-                  console.log('Invalid UserName/Password')
-              }
-            })
+            }, (err => { 
+              this.setState({error : err.response.data.error});
+            }))
             .catch(err => console.log(err))
         }else {
-          console.log('input field requiredp')
+          this.setState({error :'Please enter UserName and Password'});
         }
       }
 
@@ -69,7 +67,8 @@ class Login extends Component {
           <div class="animated bounceInDown" id="rightSquare">
             <div id="container">
             <h1 class="signup">Sign In </h1>
-            <form className="animated slideInLeft">               
+            <form className="animated slideInLeft"> 
+            <ValidationError error={this.state.error}></ValidationError>             
            <input class="optin" name="email" type="text"  onChange={this.handleChange} placeholder="Email" />      
             <input class="optin" name="password" type="password"  onChange={this.handleChange} placeholder="Password" /> </form>  
              <button class="animated infinite pulse button btn btn-info" onClick={this.login}>

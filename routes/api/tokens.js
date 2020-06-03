@@ -43,13 +43,13 @@ router.post('/checkqueue', (req, res, next) => {
 
 router.post('/getTokensByStatus', (req, res, next) => { 
   if(req.body.tokenStatus){ 
-      Tokens.find({'tokenStatus' : req.body.tokenStatus},'empId')
+      Tokens.find({'tokenStatus': {$in: ['Accepted', 'InQueue']}})
       .then(data => { 
        
         let promises = data.map(x => {
          return Users.findOne({empId: x.empId})
-                .then(y => { 
-                  let obj = ({ 'empId': x.empId, 'name' : y.name});
+                .then(y => { console.log(x)
+                  let obj = ({ 'empId': x.empId, 'name' : y.name,'tokenStatus': x.tokenStatus,'time': x.modifiedAt});
                  return obj;
                 })}) ;
         
@@ -80,11 +80,7 @@ router.post('/requesttoken', (req, res, next) => { console.log(req.body);
               const occupied =  req1.data;
               const tokenAccepted = req3.data;
               const tokenInQueue = req4.data;
-              console.log(totalseats)
-console.log(occupied)
-console.log(tokenInQueue)
-console.log(tokenAccepted)
-           
+             
            if(occupied < totalseats){
                if((occupied + tokenAccepted + tokenInQueue) < totalseats){
                 axios.post(apiUrl + '/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: 'Accepted'})
