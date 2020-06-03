@@ -4,7 +4,8 @@ const Tokens = require('../.././models/tokens');
 const axios = require('axios');
 const Users = require('../../models/users');
 
-router.post('/addorupdate', (req, res, next) => { console.log(req.body);
+router.post('/addorupdate', (req, res, next) => { 
+  
     if(req.body.empId && req.body.tokenStatus){
         Tokens.findOneAndUpdate({empId: req.body.empId},{'tokenStatus' : req.body.tokenStatus
         ,'modifiedAt':Date.now()}, {
@@ -23,14 +24,14 @@ router.post('/addorupdate', (req, res, next) => { console.log(req.body);
 
 
 router.post('/checkqueue', (req, res, next) => { 
- 
+      let apiUrl = req.protocol + '://' + req.get('host');
       Tokens.findOneAndUpdate({'tokenStatus' : 'Accepted','modifiedAt':{'$lt':new Date(Date.now() - 15*60 * 1000)}}
       ,{'tokenStatus' : 'Cancelled'
         ,'modifiedAt':Date.now()}, {
           upsert: false // Make this update into an upsert
         })
       .then(data => { console.log(data)
-        axios.post('http://localhost:3006/api/tokens/updatequeue')
+        axios.post(apiUrl + '/api/tokens/updatequeue')
               .then(t => {
                  return res.json(t)}
               );
@@ -66,11 +67,13 @@ else {
 
 router.post('/requesttoken', (req, res, next) => { console.log(req.body);
     if(req.body.empId){
+      let apiUrl = req.protocol + '://' + req.get('host');
+      
         let request = [
-            axios.get('http://localhost:3006/api/checkIns/getcount'), 
-            axios.get('http://localhost:3006/api/occupancy/totalseats'), 
-            axios.post('http://localhost:3006/api/tokens/getcountbystatus',{tokenStatus: 'Accepted'}), 
-            axios.post('http://localhost:3006/api/tokens/getcountbystatus',{tokenStatus: 'InQueue'})
+            axios.get(apiUrl + '/api/checkIns/getcount'), 
+            axios.get(apiUrl + '/api/occupancy/totalseats'), 
+            axios.post(apiUrl + '/api/tokens/getcountbystatus',{tokenStatus: 'Accepted'}), 
+            axios.post(apiUrl + '/api/tokens/getcountbystatus',{tokenStatus: 'InQueue'})
           ];
          Promise.all(request).then(([req1, req2, req3, req4]) => { 
               const totalseats = req2.data[0].totalSeats;
@@ -84,7 +87,7 @@ console.log(tokenAccepted)
            
            if(occupied < totalseats){
                if((occupied + tokenAccepted + tokenInQueue) < totalseats){
-                axios.post('http://localhost:3006/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: 'Accepted'})
+                axios.post(apiUrl + '/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: 'Accepted'})
                 .then((r) => res.json({status: true,result: r.data})
                 );
                }
@@ -117,13 +120,13 @@ router.post('/updatequeue', (req, res, next) => { console.log(req.body);
 
 router.post('/swipein', (req, res, next) => { console.log(req.body);
   if(req.body.empId &&  req.body.tokenStatus){
-     console.log(req.body)
-          axios.post('http://localhost:3006/api/checkIns/addorupdate',{empId: req.body.empId,checkInStatus: req.body.checkInStatus})
+    let apiUrl = req.protocol + '://' + req.get('host');
+          axios.post(apiUrl + '/api/checkIns/addorupdate',{empId: req.body.empId,checkInStatus: req.body.checkInStatus})
           .then(c => {
-            axios.post('http://localhost:3006/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: req.body.tokenStatus})
+            axios.post(apiUrl + '/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: req.body.tokenStatus})
             .then(r => {
               if(req.body.checkInStatus == false)
-              axios.post('http://localhost:3006/api/tokens/updatequeue')
+              axios.post(apiUrl + '/api/tokens/updatequeue')
               .then(t => {
                 var d = { tokenStatus: !r.data? '' : r.data.tokenStatus, 
                 checkInStatus: !c.data?'': c.data.checkInStatus};  return res.json(d)}
