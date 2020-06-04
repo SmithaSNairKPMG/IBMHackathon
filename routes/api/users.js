@@ -7,11 +7,9 @@ router.post('/register', (req, res, next) => { console.log(req.body);
     if(req.body.name && req.body.email && req.body.empId && req.body.password){
       Users.create(req.body)
       .then(data =>{
-        if(!data){
-          return   res.status(400).send({
-            error: 'Registration failed'
-         });
-       return res.json(data)}}
+     
+       return res.json(data)
+      }
       )
       .catch(next)
       }

@@ -75,7 +75,7 @@ constructor(props){
    console.log(data)
         if(data.empId ){
           axios.post('/api/tokens/requesttoken', data)
-            .then(res => {console.log(res)
+            .then(res => {console.log("t")
               if(res.data){ 
                 if(res.data.status == true){
              this.setState({

@@ -80,13 +80,19 @@ router.post('/requesttoken', (req, res, next) => { console.log(req.body);
               const occupied =  req1.data;
               const tokenAccepted = req3.data;
               const tokenInQueue = req4.data;
-             
+          console.log(occupied)   
+          console.log(totalseats)
+          console.log(tokenAccepted)   
+          console.log(tokenInQueue)      
            if(occupied < totalseats){
                if((occupied + tokenAccepted + tokenInQueue) < totalseats){
                 axios.post(apiUrl + '/api/tokens/addorupdate',{empId: req.body.empId,tokenStatus: 'Accepted'})
                 .then((r) => res.json({status: true,result: r.data})
                 );
                }
+               else{
+                return res.json({status:false})
+              }
            }
             else{
               return res.json({status:false})
