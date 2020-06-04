@@ -19,7 +19,7 @@ class Home extends Component {
   
       return(
         <div className="main">
-            <div className="header"><span>App Name</span><Link  to="/">Logout</Link></div>
+            <div className="header"><span>CorpDine</span><i className="fa fa-sign-out"><Link  to="/">Sign out</Link></i></div>
 
             
         { user.role == 'Employee' ? <Main user={user}/> : <Admin/>

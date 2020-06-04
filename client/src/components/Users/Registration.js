@@ -58,17 +58,7 @@ class Registration extends Component {
        
 
         <div class="animated slideInLeft" id="square">    
-        <div class="animated bounceInUp" id="leftSquare">
-          <div class="animated bounceInUp" id="circle">
-          <img class="brand img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827672/branding.png" />
-          
-          </div>
-                  
-  <h2 id="title">Welcome to Divider</h2>
-          <h3 id="subtitle">You are moments away from your first adventure.</h3>
-        
-       </div>   
-          
+      
           <div class="animated bounceInDown" id="rightSquare">
             <div id="container">
             <h1 class="signup">Sign Up </h1>

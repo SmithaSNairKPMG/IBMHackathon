@@ -1,19 +1,14 @@
 body{
   
+  padding-top: 50px;
   padding-bottom:150px;
-  background: 
-  linear-gradient(
-      rgba(251, 139, 166, 0.70),
-      rgba(224, 140, 194, 0.8),
-      rgba(194,139,228, 0.9)
-    );
-  background-size: cover;
+    background-size: cover;
   
 }
 
 #square {
   position: relative;
-	width: 800px;
+	width: 450px;
 	height: 650px;
   display: block;
   margin: auto;
@@ -54,7 +49,7 @@ body{
   width: 378px;
 }
 #rightSquare {
-	width: 60%;
+	width: 100%;
   display: block;
   margin:  auto;
 	height: 100%;
@@ -119,7 +114,7 @@ body{
 }
 
 .signup{
-  color: rgb(228, 162, 208);
+  color:#664986;
   font-family:"lato";
   font-size: 2em;
   font-weight: 800;
@@ -127,13 +122,17 @@ body{
   text-transform: uppercase;
   z-index: 3;
 }
+.button:hover{
+  background: #60467e;
+}
 
 .button{
   display: block;
   margin: auto;
   margin-bottom: 20px;
   z-index: 3;
-  background: #2BA0EE;
+  background: #60467e;
+  background-image: -webkit-linear-gradient(left bottom,rgba(159,88,150,0) 0,rgba(159,88,150,0.6) 100%);
   cursor: pointer;
 }
 #emp input:disabled{
@@ -159,7 +158,7 @@ body{
 
 #terms{
   cursor: pointer;
-  color: #FBADC1;
+  color: #79589f;
 }
 
 
@@ -209,8 +208,18 @@ form{
 .header {
   align-items: center;
   justify-content: space-between;
-  padding: 0px 57px 100px;
+  padding: 0px 57px 30px;
   display: flex;
+  font-family: cursive;
+  font-style: italic;
+  margin-left: 500px;
+  padding: x 60px 51px 60px;
+}
+.fa{
+  font: normal normal normal 16px/1 FontAwesome;
+}
+.header span{
+  font-size: 30px;
 }
 #emp.container {
   width: 400px;
@@ -224,15 +233,20 @@ form{
   width: 400px;
   background: rgba(11, 13, 24, 0.6);
   border-radius: 10px;
+  height: 100px;
+}
+.infinite.btn-info{
+  border-color: #79589f;
+  width: 75%;;
 }
 #admin .booking-form {
-  padding: 35px 60px 51px 60px;
+  padding: 10px 60px 10px 60px;
 }
 .input{
   color:black
 }
 .save{
-  background: radial-gradient(black,transparent);
+  background: maroon;
 }
 a{
   color: #fff;
@@ -264,6 +278,7 @@ display-flex, .header, .form-group {
   margin-top: 23px;
   padding: 15px 20px;
   cursor: pointer;
+  white-space: normal;
 }
 
 #emp input {
@@ -293,7 +308,6 @@ body {
   font-size: 14px;
   line-height: 1.8;
   color: #fff;
-  background-image: url(./form-img.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;
@@ -344,15 +358,21 @@ td{
   font-weight: 500;
   font-size: 14px;
   color: #fff;
-  border-bottom: solid 1px rgba(236, 174, 174, 0.1);
+  border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 
 
 /* demo styles */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
- 
+  background-image: linear-gradient(to bottom,#654a86,#534292);
+  background-color: #534292;
+}
+.swal-modal{
+ background:  lightslategrey;
+}
+.swal-button--danger{
+  background: #534292;
 }
 .admin section{
   margin: 50px;

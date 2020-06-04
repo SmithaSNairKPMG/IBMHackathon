@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 class Occupancy extends Component {
   constructor(props){
@@ -38,9 +39,8 @@ class Occupancy extends Component {
         if(this.state.totalSeats){
           axios.post('/api/occupancy/addorupdate', data)
             .then(res => {
-              if(res.data){console.log(res.data)
-                console.log('Saved');
-              //  window.location = "/";
+              if(res.data){ 
+                swal("Successful!", "Successfully saved!", "success");
               }
             })
             .catch(err => console.log(err))
