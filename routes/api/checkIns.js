@@ -66,7 +66,7 @@ router.get('/getavailableseats', (req, res, next) => {
       console.log(tokenAccepted)
       console.log(tokenInQueue)
       const available = totalseats - (occupied + tokenAccepted + tokenInQueue);
-      return res.json({available : available});
+      return res.json({available : available, occupied: occupied, tokenInQueue:tokenInQueue});
      
  });
 });

@@ -215,6 +215,22 @@ form{
   margin-left: 550px;
   padding: 0px 20px 30px;
 }
+.login_logo{
+  background-image: url("./Cafe_Logo.JPG");
+  height: 80px;
+  width: 100px;
+  display: block;
+  background-size: cover;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.logo{
+  background-image: url("./Cafe_Logo.JPG");
+  height: 80px;
+  width: 100px;
+  display: block;
+  background-size: cover;
+}
 .fa{
   font: normal normal normal 16px/1 FontAwesome;
 }
@@ -365,7 +381,7 @@ td{
 /* demo styles */
 
 body{
-  background-image: linear-gradient(to bottom,#654a86,#534292);
+  background-image:  linear-gradient(to bottom,#654a86,#534292);
   background-color: #534292;
 }
 .swal-modal{

@@ -51,11 +51,13 @@ class Login extends Component {
       let { user } = this.state;
   
       return(
-
+<React.Fragment>
+<span className="login_logo"></span>
         <div class="animated slideInLeft" style={{height:'450px'}} id="square">    
-     
+    
           <div class="animated bounceInDown" id="rightSquare">
             <div id="container">
+            
             <h1 class="signup">Sign In </h1>
             <form className="animated slideInLeft"> 
             <ValidationError error={this.state.error}></ValidationError>             
@@ -71,7 +73,7 @@ class Login extends Component {
           
      
     </div>
-            
+            </React.Fragment>
    )
     }
   }

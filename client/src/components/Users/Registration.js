@@ -56,7 +56,7 @@ class Registration extends Component {
   
       return(
        
-
+<React.Fragment><span className="login_logo"></span>
         <div class="animated slideInLeft" id="square">    
       
           <div class="animated bounceInDown" id="rightSquare">
@@ -80,6 +80,7 @@ class Registration extends Component {
           
      
     </div>
+    </React.Fragment>
       )
     }
   }

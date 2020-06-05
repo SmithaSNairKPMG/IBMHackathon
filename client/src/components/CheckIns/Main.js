@@ -164,7 +164,7 @@ getMessage(tokenStatus){
       return(
         <div className="container" id="emp">
         <div id="booking-form" className="booking-form">
-          <Available></Available>
+          <Available tokenStatus={this.state.tokenStatus}></Available>
           <Message message={message}></Message>
         <div className="form-group">
         <div className="form-submit">

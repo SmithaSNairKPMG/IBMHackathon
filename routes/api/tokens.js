@@ -43,7 +43,7 @@ router.post('/checkqueue', (req, res, next) => {
 
 router.post('/getTokensByStatus', (req, res, next) => { 
   if(req.body.tokenStatus){ 
-      Tokens.find({'tokenStatus': {$in: ['Accepted', 'InQueue']}})
+      Tokens.find({'tokenStatus': {$in: ['Accepted', 'InQueue','CheckedIn']}})
       .then(data => { 
        
         let promises = data.map(x => {
