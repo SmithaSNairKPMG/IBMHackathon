@@ -56,7 +56,7 @@ It's imperative that learning and creating can continue when educational institu
 
 ## Project roadmap
 
-![Roadmap](roadmap.jpg)
+![Roadmap](CorpDine.png)
 
 
 ## Getting started
