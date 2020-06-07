@@ -39,7 +39,7 @@ The 'new normal' way to the office cafeteria Efficiently planning social distan
 
 ## Demo video
 
-https://youtu.be/IcPecJQy-is
+(https://www.youtube.com/watch?v=IcPecJQy-is)
 
 ## The architecture
 
