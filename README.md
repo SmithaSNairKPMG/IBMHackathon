@@ -39,7 +39,7 @@ The 'new normal' way to the office cafeteria Efficiently planning social distan
 
 ## Demo video
 
-[![Watch the video](https://github.com/Code-and-Response/Liquid-Prep/blob/master/images/IBM-interview-video-image.png)](https://www.youtube.com/watch?v=IcPecJQy-is&feature=youtu.be)
+https://youtu.be/IcPecJQy-is
 
 ## The architecture
 
