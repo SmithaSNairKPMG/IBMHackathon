@@ -39,7 +39,7 @@ It's imperative that learning and creating can continue when educational institu
 
 ## Demo video
 
-https://youtu.be/vOgCOoy_Bx0)
+https://youtu.be/IcPecJQy-is
 
 ## The architecture
 
