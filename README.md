@@ -36,20 +36,18 @@ Using web application, employees need to issue a token to get in the cafeteria. 
 
 ### The idea
 
-It's imperative that learning and creating can continue when educational institutions have to shift the way they teach in times of crises, such as the COVID-19 pandemic. Providing a set of open source tools, backed by IBM Cloud and Watson Services, will enable educators to more easily make content available for their students.
+The 'new normal' way to the office cafeteria Efficiently planning social distancing at cafeteria using a web application which will help find the current occupancy of the cafeteria before leaving our desks. This will uphold social distancing by avoiding crowds and help us with live status to avoid hassles of going to the cafeteria to see if it's full/available.
+
 
 ## Demo video
 
-[![Watch the video](https://github.com/Code-and-Response/Liquid-Prep/blob/master/images/IBM-interview-video-image.png)](https://youtu.be/vOgCOoy_Bx0)
+[![Watch the video](https://github.com/Code-and-Response/Liquid-Prep/blob/master/images/IBM-interview-video-image.png)](https://youtu.be/IcPecJQy-is)
 
 ## The architecture
 
 ![Video transcription/translation app](CorpDineArchitecture.png)
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+
 
 ## Long description
 
